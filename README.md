@@ -1,6 +1,5 @@
-<img width="954" height="441" alt="msedge_0XSZRxFJLG" src="https://github.com/user-attachments/assets/007148e2-941e-4019-a235-1aef28a72cff" /># Книга контактов
-
-Простое приложение для книги контактов, построенное с использованием Express.js.
+# Книга контактов
+## Простое приложение для книги контактов, построенное с использованием Express.js.
 
 ## Скриншоты
 
@@ -43,4 +42,5 @@
 ## Статический сайт
 
 Статическая версия доступна на GitHub Pages: https://ut0ku.github.io/Contact_book/
+
 
