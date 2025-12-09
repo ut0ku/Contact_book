@@ -1,4 +1,4 @@
-# Книга контактов
+<img width="954" height="441" alt="msedge_0XSZRxFJLG" src="https://github.com/user-attachments/assets/007148e2-941e-4019-a235-1aef28a72cff" /># Книга контактов
 
 Простое приложение для книги контактов, построенное с использованием Express.js.
 
@@ -14,6 +14,10 @@
 
 Удаление контакта
 <img width="954" height="441" alt="msedge_7EJOjLjv7U" src="https://github.com/user-attachments/assets/a0a88d9a-70b9-4ae1-bbac-c2165ef23d1a" />
+
+Получение всех контактов через api запрос
+<img width="954" height="441" alt="msedge_0XSZRxFJLG" src="https://github.com/user-attachments/assets/5ee21d70-2395-46a1-9d72-823e389c1a40" />
+
 
 ## Функции
 
@@ -39,3 +43,4 @@
 ## Статический сайт
 
 Статическая версия доступна на GitHub Pages: https://ut0ku.github.io/Contact_book/
+
