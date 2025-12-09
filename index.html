@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Книга контактов</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    form { margin-bottom: 20px; }
+    input { margin: 5px; padding: 8px; }
+    button { padding: 8px 16px; }
+    ul { list-style: none; padding: 0; }
+    li { border: 1px solid #ccc; margin: 5px 0; padding: 10px; }
+  </style>
+</head>
+<body>
+  <h1>Книга контактов</h1>
+
+  <form id="contactForm">
+    <input type="text" id="name" placeholder="Имя" required>
+    <input type="text" id="phone" placeholder="Телефон" required>
+    <input type="email" id="email" placeholder="Email">
+    <button type="submit">Добавить контакт</button>
+  </form>
+
+  <input type="text" id="search" placeholder="Поиск по имени">
+  <button onclick="loadContacts()">Поиск</button>
+
+  <ul id="contactsList"></ul>
+
+  <script>
+    const form = document.getElementById('contactForm');
+    const searchInput = document.getElementById('search');
+    const contactsList = document.getElementById('contactsList');
+
+    function getContacts() {
+      return JSON.parse(localStorage.getItem('contacts')) || [];
+    }
+
+    function saveContacts(contacts) {
+      localStorage.setItem('contacts', JSON.stringify(contacts));
+    }
+
+    function loadContacts() {
+      const contacts = getContacts();
+      const search = searchInput.value.toLowerCase();
+      const filteredContacts = search ? contacts.filter(contact =>
+        contact.name.toLowerCase().includes(search)
+      ) : contacts;
+      displayContacts(filteredContacts);
+    }
+
+    function displayContacts(contacts) {
+      contactsList.innerHTML = '';
+      contacts.forEach(contact => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <strong>${contact.name}</strong><br>
+          Телефон: ${contact.phone}<br>
+          Email: ${contact.email || 'Не указан'}
+          <button onclick="deleteContact(${contact.id})">Удалить</button>
+        `;
+        contactsList.appendChild(li);
+      });
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const email = document.getElementById('email').value;
+
+      const contacts = getContacts();
+      const newId = contacts.length > 0 ? Math.max(...contacts.map(c => c.id)) + 1 : 1;
+      const newContact = { id: newId, name, phone, email: email || '' };
+      contacts.push(newContact);
+      saveContacts(contacts);
+
+      form.reset();
+      loadContacts();
+    });
+
+    function deleteContact(id) {
+      const contacts = getContacts().filter(contact => contact.id !== id);
+      saveContacts(contacts);
+      loadContacts();
+    }
+
+    // Load contacts on page load
+    loadContacts();
+  </script>
+</body>
+</html>
